@@ -25,6 +25,7 @@ npm install
 
 
 Setup the database (migration)
+Install Postgress DB on your machine
 
 ```bash
 npx prisma migrate dev --name init
