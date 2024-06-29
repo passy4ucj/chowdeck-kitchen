@@ -10,6 +10,9 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+# Migration
+RUN npx prisma migrate dev --name init
+
 # Copy the rest of the application code
 COPY . .
 
