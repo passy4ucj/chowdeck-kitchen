@@ -14,7 +14,7 @@ RUN npm install
 RUN npm install prisma --save-dev
 
 # Copy the rest of the application code
-# COPY . .
+COPY . .
 
 # Build the TypeScript code
 RUN npm run build
