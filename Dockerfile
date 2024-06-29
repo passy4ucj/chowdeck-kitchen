@@ -10,8 +10,8 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Migration
-RUN npx prisma migrate dev --name init
+# Install Prisma CLI
+RUN npm install prisma --save-dev
 
 # Copy the rest of the application code
 COPY . .
@@ -20,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port your application runs on
-EXPOSE 3000
+EXPOSE 5000
 
-# Run the application
-CMD ["npm", "start"]
+# Run Prisma migrations and start the application
+CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
