@@ -3,14 +3,7 @@
       "sourceMap": true,
       "outDir": "dist",
       "strict": true,
-      "target": "ES6",
-      "module": "commonjs",
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true,
-      "noImplicitAny": false,
-      "resolveJsonModule": true,
       "lib": ["esnext"],
       "esModuleInterop": true
-    },
-    "exclude": ["node_modules"]
+    }
 }
