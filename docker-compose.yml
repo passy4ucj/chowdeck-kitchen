@@ -1,13 +1,40 @@
-version: "3"
+# version: "3"
+
+# services:
+#   db:
+#     build: 
+#       context: .
+#       dockerfile: Dockerfile.db
+#     environment:
+#       - POSTGRES_PASSWORD=test
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_DB=engine
+#     ports:
+#       - 5432:5432
+version: '3.8'
 
 services:
-  db:
-    build: 
-      context: .
-      dockerfile: Dockerfile.db
-    environment:
-      - POSTGRES_PASSWORD=test
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=engine
+  app:
+    build: .
     ports:
-      - 5432:5432
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/chowdeckNEW
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: chowdeckNEW
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
